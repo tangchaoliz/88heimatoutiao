@@ -75,8 +75,17 @@ export default {
   methods: {
     login () {
       // 手动校验  就是校验你之前所有的规则
-      this.$refs.formObj.validate(function (isOk) {
-
+      this.$refs.formObj.validate((isOk) => {
+        if (isOk) {
+          // 如果为true 继续下一步 调用接口 登录
+          this.$axios({
+            url: '/authorizations',
+            data: this.loginForm,
+            method: 'post'
+          }).then(res => {
+            console.log(res.data)
+          })
+        }
       })
     }
   }
