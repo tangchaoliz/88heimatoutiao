@@ -1,14 +1,23 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Home from '../views/home' // 如果文件夹下的命名是index.vue可以不用写
+import Login from '../views/login'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
+    redirect: '/home'
+  },
+  {
+    path: '/home',
     name: 'home',
     component: Home
+  },
+  {
+    path: '/login',
+    component: Login
   }
   // {
   //   path: '/about',
