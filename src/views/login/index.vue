@@ -83,7 +83,8 @@ export default {
             data: this.loginForm,
             method: 'post'
           }).then(res => {
-            console.log(res.data)
+            // 将token值存储到本地存储
+            window.localStorage.setItem('user-token', res.data.data.token)
           })
         }
       })
