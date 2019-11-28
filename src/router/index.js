@@ -54,5 +54,24 @@ const routes = [
 const router = new VueRouter({
   routes
 })
+// 路由拦截器
+router.beforeEach((to, from, next) => {
+  // 1 如果访问的是登陆页面直接让其通过
+  if (to.path === '/login') {
+    next()
+    // 停止代码往后执行
+    return
+  }
 
+  // 2 非登录页面 校验登录状态
+  // 2.1 获取用户token
+  const token = window.localStorage.getItem('user-token')
+
+  // 2.2 判断是否有 token 有就通过
+  if (token) {
+    next()
+  } else {
+    next('/login')
+  }
+})
 export default router
