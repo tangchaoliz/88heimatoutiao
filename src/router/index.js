@@ -8,6 +8,8 @@ import Login from '../views/login'
 import Home from '@/views/home'
 import Article from '@/views/article'
 import Publish from '@/views/publish'
+// 加载 nprogress
+import NProgress from 'nprogress'
 
 Vue.use(VueRouter)
 
@@ -56,6 +58,9 @@ const router = new VueRouter({
 })
 // 路由拦截器
 router.beforeEach((to, from, next) => {
+  // 开启路由进度导航条
+  NProgress.start()
+
   // 1 如果访问的是登陆页面直接让其通过
   if (to.path === '/login') {
     next()
@@ -73,5 +78,10 @@ router.beforeEach((to, from, next) => {
   } else {
     next('/login')
   }
+})
+
+router.afterEach((to, from) => {
+  // 进度条结束
+  NProgress.done()
 })
 export default router
