@@ -26,7 +26,7 @@
       </el-submenu>
 
       <!-- 二级带单 -->
-      <el-submenu inedx="3">
+      <el-submenu index="3">
         <!-- 具名插槽 -->
         <template slot='title'>粉丝管理</template>
         <el-menu-item>图文数据</el-menu-item>
