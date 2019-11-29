@@ -57,6 +57,7 @@ const router = new VueRouter({
   routes
 })
 // 路由拦截器
+// 路由全局前置守卫
 router.beforeEach((to, from, next) => {
   // 开启路由进度导航条
   NProgress.start()
@@ -77,9 +78,11 @@ router.beforeEach((to, from, next) => {
     next()
   } else {
     next('/login')
+    // 如果在登录页并且是非登录状态访问登录页面,这里手动的终止进度条,否则进度条不会停止
+    NProgress.done()
   }
 })
-
+// 路由全局后置钩子
 router.afterEach((to, from) => {
   // 进度条结束
   NProgress.done()
